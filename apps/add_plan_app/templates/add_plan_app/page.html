@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Add Plan</title>
+</head>
+<body>
+  <h1>Add a Trip</h1>
+  <form action='{% url 'addplan:create' %}' method="post">
+    {% csrf_token %}
+    Destination: <input type="text" name="destination" placeholder="Destination" required>
+    Description: <input type="text" name="description" placeholder="Description" required>
+    Start Date After Today: <input type="date" name="travelstartdate" placeholder="Travel Date From" min="2016-10-21" required>
+    End Date after Start Date: <input type="date" name="travelenddate" placeholder="Travel Date To" min="2016-10-21" required>
+    <input type="submit" value="Add Plan">
+  </form>
+  {% if messages %}
+    {% for message in messages %}
+      <p>{{ message }}</p>
+    {% endfor %}
+  {% endif %}
+  <a href="{% url 'travel:index' %}">Home</a>
+  <a href="{% url 'login:logout' %}">Log out</a>
+</body>
+</html>

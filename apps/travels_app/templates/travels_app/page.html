@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>User Dashboard</title>
+</head>
+<body>
+  <h1>Hello, {{user.name}}!</h1>
+  <p>Your Trip Schedule</p>
+  <table>
+    <tr>
+      <th>Destination</th>
+      <th>Travel Start Date</th>
+      <th>Travel End Date</th>
+      <th>Plan</th>
+    </tr>
+    {% for plan in user_on %}
+    <tr>
+      <td value="{{plan.id}}"><a href="{% url 'travel:details' plan.id %}">{{plan.destination}}</a></td>
+      <td>{{plan.description}}</td>
+      <td>{{plan.travelstartdate}}</td>
+      <td>{{plan.travelenddate}}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  <p>Other User's Travel Plans</p>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Destination</th>
+      <th>Travel Start Date</th>
+      <th>Travel End Date</th>
+      <th>Plan</th>
+      <th>Do You Want To Join?</th>
+    </tr>
+    {% for plan in user_off %}
+    <tr>
+      <td>{{plan.user.name}}</td>
+      <td value="{{plan.id}}"><a href="{% url 'travel:details' plan.id %}">{{plan.destination}}</a></td>
+      <td>{{plan.description}}</td>
+      <td>{{plan.travelstartdate}}</td>
+      <td>{{plan.travelenddate}}</td>
+      <td><a href="{% url 'travel:join' plan.id %}">Join</a></td>
+    </tr>
+    {% endfor %}
+  </table>
+  <a href="{% url 'addplan:index' %}">Add Travel Plan</a>
+  <a href="{% url 'travel:index' %}">Home</a>
+  <a href="{% url 'login:logout' %}">Log out</a>
+</body>
+</html>

@@ -31,6 +31,11 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'apps.belt_exam_app',
+    'apps.login_and_registration_app',
+    'apps.travels_app',
+    'apps.add_plan_app',
+    'django_extensions',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
